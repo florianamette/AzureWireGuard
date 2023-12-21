@@ -67,13 +67,12 @@ do
 [Interface]
 PrivateKey = $client_private_key
 Address = 10.13.13.$((100 + i))/32
-DNS = 1.1.1.1
 
 [Peer]
 PublicKey = $server_public_key
 PresharedKey = $preshared_key
 EndPoint = $1:51820
-AllowedIps = 0.0.0.0/0, ::/0
+AllowedIps = 10.0.0.0/8
 PersistentKeepAlive = 25
 EOF
 
@@ -95,3 +94,7 @@ apt-get full-upgrade -y
 # Nettoyage
 apt-get autoremove -y
 apt-get clean
+
+sleep 60
+reboot
+
