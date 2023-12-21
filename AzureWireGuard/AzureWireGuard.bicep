@@ -1,6 +1,6 @@
 param timeStamp string = utcNow('u')
-param location string = 'eastus'
-param code string = substring(uniqueString(subscription().id, location), 0, 5)
+param location string = 'francecentral'
+param code string = 'lab'
 param tags object = {}
 param vmSize string = 'Standard_DS2_v2'
 @maxLength(16)
