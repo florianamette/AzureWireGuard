@@ -46,14 +46,14 @@ resource vnet 'Microsoft.Network/virtualNetworks@2022-09-01' = {
   properties: {
     addressSpace: {
       addressPrefixes: [
-        '10.10.10.0/16'
+        '10.0.10.0/16'
       ]
     }
     subnets: [
       {
         name: 'snet-wg-${code}'
         properties: {
-          addressPrefix: '10.10.10.0/24'
+          addressPrefix: '10.0.10.0/24'
           networkSecurityGroup: {
             id: networkSecurityGroup.id
           }
