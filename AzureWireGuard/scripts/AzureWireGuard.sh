@@ -55,7 +55,7 @@ do
     echo "[Peer]
 PublicKey = $client_public_key
 PresharedKey = $preshared_key
-AllowedIps = 10.13.13.$((100 + i))/32" >> /etc/wireguard/wg0.conf
+AllowedIps = 10.0.10.$((100 + i))/16" >> /etc/wireguard/wg0.conf
 done
 
 # Création des fichiers de configuration pour chaque client
@@ -66,7 +66,7 @@ do
     cat > /home/$2/wg0-client-${i}.conf << EOF
 [Interface]
 PrivateKey = $client_private_key
-Address = 10.13.13.$((100 + i))/32
+Address = 10.0.10.$((100 + i))/24
 
 [Peer]
 PublicKey = $server_public_key
@@ -79,10 +79,6 @@ EOF
     chmod go+r /home/$2/wg0-client-${i}.conf
 done
 
-# Configuration du pare-feu
-ufw allow 51820/udp
-ufw allow 22/tcp
-ufw enable
 
 # Activation du service WireGuard
 wg-quick up wg0
