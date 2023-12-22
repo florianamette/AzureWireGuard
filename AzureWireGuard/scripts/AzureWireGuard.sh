@@ -20,6 +20,7 @@ apt-get install wireguard -y
 # Création du répertoire pour les clés de sécurité
 mkdir /home/$2/WireGuardSecurityKeys
 umask 077
+mkdir /home/$2/config/
 
 # Génération des clés du serveur et de la clé pré-partagée
 wg genkey | tee /home/$2/WireGuardSecurityKeys/server_private_key | wg pubkey > /home/$2/WireGuardSecurityKeys/server_public_key
@@ -63,7 +64,7 @@ for i in $(seq 1 100)
 do
     client_private_key=$(</home/$2/WireGuardSecurityKeys/client_${i}_private_key)
 
-    cat > /home/$2/wg0-client-${i}.conf << EOF
+    cat > /home/$2/config/wg${i}.conf << EOF
 [Interface]
 PrivateKey = $client_private_key
 Address = 10.0.10.$((100 + i))/24
