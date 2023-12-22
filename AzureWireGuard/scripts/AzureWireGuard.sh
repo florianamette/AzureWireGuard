@@ -92,6 +92,6 @@ apt-get full-upgrade -y
 apt-get autoremove -y
 apt-get clean
 
-sleep 60
+sleep 5
 reboot
 
